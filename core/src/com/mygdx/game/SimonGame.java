@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import java.util.concurrent.TimeUnit;
 
 public class SimonGame extends ApplicationAdapter {
 	private OrthographicCamera cam;
@@ -32,7 +33,7 @@ public class SimonGame extends ApplicationAdapter {
 		//logic
 		cam.update();
 		if(YELLOW.contains(pos.x, pos.y)) {
-
+			yellowFlash();
 		    cam.unproject(pos);
         }
 		//drawing
@@ -51,15 +52,20 @@ public class SimonGame extends ApplicationAdapter {
         sr.setColor(Color.GREEN);
         sr.rect(0, Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		GREEN = new Rectangle(0, Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        //flashes
-		private void yellowFlash() {
-			sr.setColor(Color.)
-		}
 		sr.end();
-
 	}
 	@Override
 	public void dispose() {
         sr.dispose();
+	}
+
+	//flashes
+	private void yellowFlash() {
+		sr.begin(ShapeRenderer.ShapeType.Filled);
+		sr.setColor(Color.GOLD);
+		sr.rect(0, 0,Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		TimeUnit.MILLISECONDS.sleep(500);
+		sr.setColor(Color.YELLOW);
+		sr.rect(0, 0,Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 	}
 }
