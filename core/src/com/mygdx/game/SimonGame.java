@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class SimonGame extends ApplicationAdapter {
+    //Game variables
     private Stage stage;
     boolean waiting;
     ImageButton yellowButton;
@@ -48,6 +49,12 @@ public class SimonGame extends ApplicationAdapter {
     Integer step;
 
     @Override
+    /**
+     * Create method provided by libGDX library. Executes once, at startup, to initialize the game state.
+     * @author Melody Wang
+     * @param none
+     * @return void
+     */
     public void create() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -97,7 +104,7 @@ public class SimonGame extends ApplicationAdapter {
         greenButton.addListener(new ClickListener());
         stage.addActor(greenButton);
 
-        //intro
+        //game intro
         System.out.println("Welcome to SIMON!");
         System.out.println("Press any button to begin.");
         //game loop variables
@@ -107,11 +114,19 @@ public class SimonGame extends ApplicationAdapter {
     }
 
     @Override
+    /**
+     * Render method provided by libGDX library: constantly executing to render changes in the game,
+     * draw new frames, etc.
+     * @author Melody Wang
+     * @param none
+     * @return void
+     */
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+        //loop to play the pattern by calling flash methods
         if (!waiting) {
             sequence.add((int) (Math.random() * 4) + 1);
             System.out.println("First button: " + sequence.get(0));
@@ -149,9 +164,14 @@ public class SimonGame extends ApplicationAdapter {
                 }
             }
             waiting = true;
+            //line to help with debug
             System.out.println("Waiting");
             clicked = 0;
-        } else if (waiting) {
+        }
+        //loop to get user input and check that the player has pressed the correct buttons
+        //known bug: doesn't wait for user input, just runs through the loop
+        //UNKNOWN how to fix
+        else if (waiting) {
             if (yellowButton.isPressed()) {
                 yellowFlash();
                 clicked = 1;
@@ -174,6 +194,7 @@ public class SimonGame extends ApplicationAdapter {
                 System.out.println("Game over!");
                 waiting = false;
             }
+            //deprecated code: original attempt at checking for correct user input
             /*for (Integer flash : sequence) {
                 if (yellowButton.isPressed()) {
                     clicked = 1;
@@ -197,7 +218,13 @@ public class SimonGame extends ApplicationAdapter {
         }
     }
 
-
+    /**
+     * Method to change the colour of the yellow button, giving the appearance that it has "flashed".
+     *
+     * @param none
+     * @return void
+     * @author Melody Wang
+     */
     private void yellowFlash() {
         try {
             yellowButton.remove();
@@ -216,6 +243,13 @@ public class SimonGame extends ApplicationAdapter {
         }
     }
 
+    /**
+     * Method to change the colour of the blue button, giving the appearance that it has "flashed".
+     *
+     * @param none
+     * @return void
+     * @author Melody Wang
+     */
     private void blueFlash() {
         try {
             blueButton.remove();
@@ -234,6 +268,13 @@ public class SimonGame extends ApplicationAdapter {
         }
     }
 
+    /**
+     * Method to change the colour of the red button, giving the appearance that it has "flashed".
+     *
+     * @param none
+     * @return void
+     * @author Melody Wang
+     */
     private void redFlash() {
         try {
             redButton.remove();
@@ -252,6 +293,13 @@ public class SimonGame extends ApplicationAdapter {
         }
     }
 
+    /**
+     * Method to change the colour of the green button, giving the appearance that it has "flashed".
+     *
+     * @param none
+     * @return void
+     * @author Melody Wang
+     */
     private void greenFlash() {
         try {
             greenButton.remove();
