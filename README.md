@@ -9,4 +9,4 @@ Link to the LibGDX website where we got the source code from :arrow_down: We als
 https://libgdx.badlogicgames.com/index.html
 ```
 
-Simon is a repeat memory game that allows the user to test their memory skills by pressing the sequence of colors that are displayed. The screen will output a sequence and then the player must copy the exact pattern correctly to move onto the next sequence. If the player fails t0 complete the sequence, the game will stop and will reset. 
+Simon is a repeat memory game that allows the user to test their memory skills by pressing the sequence of colors that are displayed. The screen will output a sequence and then the player must copy the exact pattern correctly to move onto the next sequence. If the player fails to complete the sequence, the game will stop and will reset. 
